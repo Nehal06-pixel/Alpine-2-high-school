@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alpine Secondary School | Birgunj, Nepal</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
+
+<style>
+/* ===== BASE STYLES (UNCHANGED) ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7fb;
+    color: #333;
+    line-height: 1.7;
+}
+
+/* ===== HEADER ===== */
+header {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+/* LOGO — BIG ON PC */
+.header-logo {
+    width: 140px;        /* BIG ON DESKTOP */
+    height: auto;
+    margin-bottom: 18px;
+}
+
+/* HEADER TEXT */
+header h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    letter-spacing: 2px;
+}
+
+header p {
+    font-size: 1.2rem;
+    margin-top: 15px;
+    opacity: 0.9;
+}
+
+/* ===== NAV ===== */
+nav {
+    background-color: #102a43;
+    padding: 15px;
+    text-align: center;
+}
+
+nav a {
+    color: #ffffff;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-block;
+}
+
+/* ===== SECTIONS ===== */
+section {
+    padding: 60px 10%;
+    background-color: white;
+    margin-bottom: 20px;
+}
+
+section h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.2rem;
+    color: #102a43;
+    margin-bottom: 20px;
+}
+
+section p {
+    font-size: 1.05rem;
+    margin-bottom: 15px;
+}
+
+ul {
+    margin-left: 20px;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+.highlight {
+    background: #e8f1ff;
+    padding: 25px;
+    border-left: 6px solid #1f6ae1;
+    border-radius: 6px;
+}
+
+.contact-box {
+    background: #102a43;
+    color: white;
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.contact-box a {
+    color: #00d4ff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+footer {
+    background-color: #0b1d2a;
+    color: #ccc;
+    text-align: center;
+    padding: 30px 15px;
+}
+
+/* ===== ANIMATIONS ===== */
+.animate {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+.animate.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.animate h2::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 4px;
+    background: #1f6ae1;
+    margin-top: 8px;
+    transition: width 0.6s ease;
+}
+
+.animate.show h2::after {
+    width: 90px;
+}
+
+/* ===== MOBILE RESPONSIVE (LOGO SMALLER) ===== */
+@media (max-width: 768px) {
+
+    header {
+        padding: 60px 20px;
+    }
+
+    .header-logo {
+        width: 85px;     /* SMALL & CLEAN ON MOBILE */
+        margin-bottom: 12px;
+    }
+
+    header h1 {
+        font-size: 2.1rem;
+        letter-spacing: 1px;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    nav {
+        padding: 12px;
+    }
+
+    nav a {
+        margin: 6px 10px;
+        font-size: 0.95rem;
+    }
+
+    section {
+        padding: 40px 6%;
+    }
+
+    section h2 {
+        font-size: 1.7rem;
+    }
+
+    section p {
+        font-size: 1rem;
+    }
+
+    ul {
+        margin-left: 18px;
+    }
+
+    .highlight {
+        padding: 20px;
+    }
+
+    .contact-box {
+        padding: 25px;
+    }
+
+    footer {
+        font-size: 0.9rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="animate">
+    <!-- SCHOOL LOGO -->
+    <img src="images/logo.png" alt="Alpine Secondary School Logo" class="header-logo">
+
+    <h1>Alpine Secondary School</h1>
+    <p>Excellence in Education | Birgunj, Nepal</p>
+</header>
+
+<nav>
+    <a href="#about">About</a>
+    <a href="#academics">Academics</a>
+    <a href="#facilities">Facilities</a>
+    <a href="#activities">Activities</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section id="about" class="animate">
+    <h2>About Alpine Secondary School</h2>
+    <p align="justify">
+        Alpine is a secondary school is located in Shreepur-11, Birgunj. It was established in 1997. The school is known for its quality education
+        and extracurricular activities. The school offers education from grade Nursery to grade 12, following the national curriculum. It has a team of
+        dedicated teachers and staff who work towards the holistic development of students. The school also organizes various events and
+        competitions to encourage students to showcase their talents. Overall, Alpine secondary school is a reputable institution in the Birgunj
+        area.
+    </p>
+    <p align="justify">
+        Affiliated with the National Examination Board (NEB) and recognized by the Ministry of Education,
+        Alpine Secondary School has continuously produced outstanding results in SEE and +2 programs.
+    </p>
+</section>
+
+<section id="academics" class="animate">
+    <h2>Academic Programs</h2>
+    <div class="highlight">
+        <p>The school offers a comprehensive academic structure designed to meet national and global standards:</p>
+        <ul>
+            <li>Early Childhood Development (Nursery-UKG)</li>
+            <li>Primary Level (Grade 1–5)</li>
+            <li>Lower Secondary Level (Grade 6–8)</li>
+            <li>Secondary Level (Grade 9–10 – SEE)</li>
+            <li>Higher Secondary (+2 Science & Management)</li>
+        </ul>
+    </div>
+</section>
+
+<section id="facilities" class="animate">
+    <h2>School Facilities</h2>
+    <ul>
+        <li>Well-equipped Science and Computer Laboratories</li>
+        <li>Extensive Library with academic resources</li>
+        <li>Smart classrooms with modern teaching tools</li>
+        <li>Sports ground and indoor game facilities</li>
+        <li>Safe transportation services</li>
+        <li>Clean cafeteria and hygienic environment</li>
+    </ul>
+</section>
+
+<section id="activities" class="animate">
+    <h2>Co-Curricular & Extra-Curricular Activities</h2>
+    <p>
+        Alpine Secondary School strongly believes in holistic education.
+        Students are encouraged to participate in various activities that enhance leadership,
+        creativity, and confidence.
+    </p>
+    <ul>
+        <li>Sports competitions and physical training</li>
+        <li>Music, dance, and cultural programs</li>
+        <li>Debates, quizzes, and speech competitions</li>
+        <li>Educational tours and workshops</li>
+        <li>Annual functions and social awareness programs</li>
+    </ul>
+</section>
+
+<section id="contact" class="animate">
+    <h2>Contact & Social Media</h2>
+    <div class="contact-box">
+        <p><strong>Address:</strong> Shreepur-11, Birgunj Metropolitan City, Parsa, Nepal</p>
+        <p><strong>Phone:</strong> 051-527898</p>
+        <p>
+            <strong>Facebook Page:</strong>
+            <a href="https://www.facebook.com/alpineschoolbrj/" target="_blank">
+                Visit Alpine Secondary School on Facebook
+            </a>
+            <br>
+            <small>Visit our facebook page to stay updated with school news and events.</small>
+        </p>
+    </div>
+</section>
+
+<footer class="animate">
+    <p>© 2025 Alpine Secondary School, Birgunj. All Rights Reserved.</p>
+    <p>Designed with dedication for quality education.</p>
+</footer>
+
+<script>
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+        } else {
+            entry.target.classList.remove("show");
+        }
+    });
+}, { threshold: 0.2 });
+
+document.querySelectorAll(".animate").forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
