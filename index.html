@@ -5,6 +5,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Alpine Secondary School | Birgunj, Nepal</title>
 
+<!-- ===== SEO META TAGS (ADDED ONLY) ===== -->
+<meta name="description" content="Alpine Secondary School, Birgunj is a leading educational institution offering Nursery to Grade 12 education with excellent academic results, modern facilities, and holistic development.">
+<meta name="keywords" content="Alpine Secondary School, Best School in Birgunj, School in Birgunj Nepal, Secondary School Birgunj, +2 Science Management Birgunj, NEB School Birgunj">
+<meta name="author" content="Alpine Secondary School, Birgunj">
+<meta name="robots" content="index, follow">
+
+<!-- ===== OPEN GRAPH / SOCIAL MEDIA SEO (ADDED ONLY) ===== -->
+<meta property="og:title" content="Alpine Secondary School | Birgunj, Nepal">
+<meta property="og:description" content="Providing quality education from Nursery to Grade 12 with excellent academic results and modern facilities.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.alpineschoolbirgunj.edu.np">
+<meta property="og:image" content="https://www.alpineschoolbirgunj.edu.np/images/logo.png">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Alpine Secondary School | Birgunj">
+<meta name="twitter:description" content="Leading secondary school in Birgunj offering Nursery to +2 education.">
+
+<!-- ===== STRUCTURED DATA / SCHEMA (ADDED ONLY) ===== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "School",
+  "name": "Alpine Secondary School",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Shreepur-11",
+    "addressLocality": "Birgunj",
+    "addressRegion": "Parsa",
+    "addressCountry": "NP"
+  },
+  "telephone": "+977-51-527898",
+  "url": "https://www.alpineschoolbirgunj.edu.np",
+  "sameAs": [
+    "https://www.facebook.com/alpineschoolbrj/"
+  ]
+}
+</script>
+
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@600;800&family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
 
@@ -46,7 +84,6 @@ header h1 {
     font-size: 3.2rem;
     letter-spacing: 4px;
     text-transform: uppercase;
-
     background: linear-gradient(
         90deg,
         #00d4ff,
@@ -58,10 +95,7 @@ header h1 {
     background-size: 400% 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-
-    animation:
-        shimmerMove 6s linear infinite,
-        textGlow 3.5s ease-in-out infinite;
+    animation: shimmerMove 6s linear infinite, textGlow 3.5s ease-in-out infinite;
 }
 
 header p {
@@ -453,7 +487,6 @@ const observer = new IntersectionObserver(entries => {
 
 document.querySelectorAll(".animate").forEach(el => observer.observe(el));
 
-/* DARK MODE LOGIC (ONLY ADDED) */
 const toggle = document.getElementById("darkToggle");
 if (localStorage.getItem("darkMode") === "enabled") {
     document.body.classList.add("dark-mode");
