@@ -366,6 +366,32 @@ body.dark-mode li { color: #d1e7ff; }
     box-shadow: 0 10px 25px rgba(0,0,0,0.35);
     z-index: 9999;
 }
+
+/* ===== NOTICE MARQUEE (ADD HERE) ===== */
+.notice-wrapper {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.notice-text {
+    display: inline-block;
+    font-family: 'Orbitron', 'Montserrat', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1f6ae1;
+    padding-left: 100%;
+    animation: noticeMove 15s linear infinite;
+}
+
+@keyframes noticeMove {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+body.dark-mode .notice-text {
+    color: #7dd3fc;
+}
+
 </style>
 </head>
 
@@ -391,9 +417,10 @@ body.dark-mode li { color: #d1e7ff; }
 <!-- ===== NOTICE BOARD (ADDED, NOTHING ELSE MOVED) ===== -->
 <section id="notice" class="animate">
     <h2>Notice Board</h2>
-    <div class="highlight" id="noticeBoard">
-        <p>Loading notices...</p>
-    </div>
+<div class="highlight notice-wrapper" id="noticeBoard">
+    <div class="notice-text">Loading notices...</div>
+</div>
+
 </section>
 
 <section id="about" class="animate">
@@ -525,9 +552,10 @@ const noticeBoard = document.getElementById("noticeBoard");
 db.collection("notices").orderBy("time","desc").onSnapshot(snapshot => {
     noticeBoard.innerHTML = "";
     snapshot.forEach(doc => {
-        const p = document.createElement("p");
-        p.textContent = "• " + doc.data().text;
-        noticeBoard.appendChild(p);
+    const div = document.createElement("div");
+div.className = "notice-text";
+div.textContent = doc.data().text;
+noticeBoard.appendChild(div);
     });
 });
 </script>
