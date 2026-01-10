@@ -6,10 +6,10 @@
 <title>Alpine Secondary School | Birgunj, Nepal</title>
 
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@600;800&family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
 
 <style>
-/* ===== BASE STYLES (UNCHANGED) ===== */
+/* ===== BASE STYLES ===== */
 * {
     margin: 0;
     padding: 0;
@@ -21,34 +21,55 @@ body {
     background-color: #f4f7fb;
     color: #333;
     line-height: 1.7;
+    overflow-x: hidden;
 }
 
 /* ===== HEADER ===== */
 header {
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    background: linear-gradient(270deg, #0f2027, #203a43, #2c5364, #0f2027);
+    background-size: 600% 600%;
+    animation: gradientMove 14s ease infinite;
     color: white;
     padding: 80px 20px;
     text-align: center;
 }
 
-/* LOGO — BIG ON PC */
 .header-logo {
-    width: 140px;        /* BIG ON DESKTOP */
+    width: 190px;
     height: auto;
     margin-bottom: 18px;
+    animation: logoFloat 6s ease-in-out infinite;
 }
 
-/* HEADER TEXT */
 header h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 3rem;
-    letter-spacing: 2px;
+    font-family: 'Orbitron', 'Montserrat', sans-serif;
+    font-size: 3.2rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+
+    background: linear-gradient(
+        90deg,
+        #00d4ff,
+        #1f6ae1,
+        #00d4ff,
+        #ffffff,
+        #00d4ff
+    );
+    background-size: 400% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation:
+        shimmerMove 6s linear infinite,
+        textGlow 3.5s ease-in-out infinite;
 }
 
 header p {
     font-size: 1.2rem;
     margin-top: 15px;
     opacity: 0.9;
+    letter-spacing: 1px;
+    animation: fadeUp 1.5s ease forwards;
 }
 
 /* ===== NAV ===== */
@@ -63,7 +84,22 @@ nav a {
     margin: 0 15px;
     text-decoration: none;
     font-weight: 500;
-    display: inline-block;
+    position: relative;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #00d4ff;
+    left: 0;
+    bottom: -5px;
+    transition: width 0.4s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
 }
 
 /* ===== SECTIONS ===== */
@@ -78,11 +114,36 @@ section h2 {
     font-size: 2.2rem;
     color: #102a43;
     margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 section p {
     font-size: 1.05rem;
     margin-bottom: 15px;
+}
+
+/* ===== MINI HEADING ===== */
+.mini-heading {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #102a43;
+    letter-spacing: 0.5px;
+    margin-bottom: 18px;
+    position: relative;
+    padding-left: 14px;
+}
+
+.mini-heading::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 4px;
+    height: 70%;
+    background: linear-gradient(180deg, #1f6ae1, #00d4ff);
+    border-radius: 2px;
 }
 
 ul {
@@ -91,20 +152,36 @@ ul {
 
 ul li {
     margin-bottom: 10px;
+    opacity: 0;
+    transform: translateX(-20px);
 }
 
+.animate.show ul li {
+    animation: listSlide 0.6s ease forwards;
+}
+
+.animate.show ul li:nth-child(1){animation-delay:.1s}
+.animate.show ul li:nth-child(2){animation-delay:.2s}
+.animate.show ul li:nth-child(3){animation-delay:.3s}
+.animate.show ul li:nth-child(4){animation-delay:.4s}
+.animate.show ul li:nth-child(5){animation-delay:.5s}
+
+/* ===== GLASS BOX ===== */
 .highlight {
     background: #e8f1ff;
-    padding: 25px;
+    padding: 30px;
     border-left: 6px solid #1f6ae1;
-    border-radius: 6px;
+    border-radius: 10px;
+    animation: glowPulse 5s ease-in-out infinite;
 }
 
+/* ===== CONTACT BOX ===== */
 .contact-box {
     background: #102a43;
     color: white;
     padding: 40px;
     border-radius: 10px;
+    animation: breathe 6s ease-in-out infinite;
 }
 
 .contact-box a {
@@ -113,6 +190,7 @@ ul li {
     font-weight: 600;
 }
 
+/* ===== FOOTER ===== */
 footer {
     background-color: #0b1d2a;
     color: #ccc;
@@ -120,11 +198,11 @@ footer {
     padding: 30px 15px;
 }
 
-/* ===== ANIMATIONS ===== */
+/* ===== SCROLL ANIMATION ===== */
 .animate {
     opacity: 0;
     transform: translateY(50px);
-    transition: all 0.8s ease;
+    transition: all 0.9s ease;
 }
 
 .animate.show {
@@ -146,34 +224,64 @@ footer {
     width: 90px;
 }
 
-/* ===== MOBILE RESPONSIVE (LOGO SMALLER) ===== */
-@media (max-width: 768px) {
+/* ===== KEYFRAMES ===== */
+@keyframes gradientMove {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
 
+@keyframes logoFloat {
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-12px)}
+}
+
+@keyframes textGlow {
+    0%,100%{text-shadow:0 0 10px rgba(0,212,255,0.4)}
+    50%{text-shadow:0 0 30px rgba(0,212,255,0.9)}
+}
+
+@keyframes shimmerMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 400% 50%; }
+}
+
+@keyframes fadeUp {
+    from{opacity:0; transform:translateY(20px)}
+    to{opacity:0.9; transform:translateY(0)}
+}
+
+@keyframes listSlide {
+    to {opacity:1; transform:translateX(0)}
+}
+
+@keyframes glowPulse {
+    0%,100%{box-shadow:0 0 0 rgba(31,106,225,0)}
+    50%{box-shadow:0 0 25px rgba(31,106,225,0.45)}
+}
+
+@keyframes breathe {
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.03)}
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
     header {
         padding: 60px 20px;
     }
 
     .header-logo {
-        width: 85px;     /* SMALL & CLEAN ON MOBILE */
-        margin-bottom: 12px;
+        width: 85px;
     }
 
     header h1 {
         font-size: 2.1rem;
-        letter-spacing: 1px;
+        letter-spacing: 2px;
     }
 
     header p {
         font-size: 1rem;
-    }
-
-    nav {
-        padding: 12px;
-    }
-
-    nav a {
-        margin: 6px 10px;
-        font-size: 0.95rem;
     }
 
     section {
@@ -184,35 +292,60 @@ footer {
         font-size: 1.7rem;
     }
 
-    section p {
-        font-size: 1rem;
-    }
-
-    ul {
-        margin-left: 18px;
-    }
-
     .highlight {
         padding: 20px;
-    }
-
-    .contact-box {
-        padding: 25px;
     }
 
     footer {
         font-size: 0.9rem;
     }
 }
+
+/* ===== DARK MODE (ONLY ADDED) ===== */
+body.dark-mode {
+    background-color: #0b1d2a;
+    color: #dce7f3;
+}
+body.dark-mode section { background-color: #102a43; }
+body.dark-mode nav,
+body.dark-mode footer,
+body.dark-mode .contact-box { background-color: #071826; }
+body.dark-mode .highlight {
+    background: #0f2a44;
+    border-left-color: #00d4ff;
+}
+body.dark-mode h2,
+body.dark-mode .mini-heading { color: #7dd3fc; }
+body.dark-mode p,
+body.dark-mode li { color: #d1e7ff; }
+
+/* ===== DARK TOGGLE BUTTON ===== */
+.dark-toggle {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    width: 46px;
+    height: 46px;
+    background: linear-gradient(135deg, #1f6ae1, #00d4ff);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.3rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    z-index: 9999;
+}
 </style>
 </head>
 
 <body>
 
-<header class="animate">
-    <!-- SCHOOL LOGO -->
-    <img src="images/logo.png" alt="Alpine Secondary School Logo" class="header-logo">
+<div class="dark-toggle" id="darkToggle">🌙</div>
 
+<header class="animate">
+    <img src="images/logo.png" alt="Alpine Secondary School Logo" class="header-logo">
     <h1>Alpine Secondary School</h1>
     <p>Excellence in Education | Birgunj, Nepal</p>
 </header>
@@ -229,10 +362,9 @@ footer {
     <h2>About Alpine Secondary School</h2>
     <p align="justify">
         Alpine is a secondary school is located in Shreepur-11, Birgunj. It was established in 1997. The school is known for its quality education
-        and extracurricular activities. The school offers education from grade Nursery to grade 12, following the national curriculum. It has a team of
-        dedicated teachers and staff who work towards the holistic development of students. The school also organizes various events and
-        competitions to encourage students to showcase their talents. Overall, Alpine secondary school is a reputable institution in the Birgunj
-        area.
+        and extracurricular activities. The school offers education from grade Nursery to grade 12, following the national curriculum.  It has a team of dedicated teachers 
+        and staff who work towards the holistic development of students. The school also organizes various events and competitions
+         to encourage students to showcase their talents. Overall, Alpine secondary school is a reputable institution in the Birgunj area.
     </p>
     <p align="justify">
         Affiliated with the National Examination Board (NEB) and recognized by the Ministry of Education,
@@ -243,7 +375,9 @@ footer {
 <section id="academics" class="animate">
     <h2>Academic Programs</h2>
     <div class="highlight">
-        <p>The school offers a comprehensive academic structure designed to meet national and global standards:</p>
+        <p class="mini-heading">
+            The school offers a comprehensive academic structure designed to meet national and global standards:
+        </p>
         <ul>
             <li>Early Childhood Development (Nursery-UKG)</li>
             <li>Primary Level (Grade 1–5)</li>
@@ -256,30 +390,33 @@ footer {
 
 <section id="facilities" class="animate">
     <h2>School Facilities</h2>
-    <ul>
-        <li>Well-equipped Science and Computer Laboratories</li>
-        <li>Extensive Library with academic resources</li>
-        <li>Smart classrooms with modern teaching tools</li>
-        <li>Sports ground and indoor game facilities</li>
-        <li>Safe transportation services</li>
-        <li>Clean cafeteria and hygienic environment</li>
-    </ul>
+    <div class="highlight">
+        <ul>
+            <li>Well-equipped Science and Computer Laboratories</li>
+            <li>Extensive Library with academic resources</li>
+            <li>Smart classrooms with modern teaching tools</li>
+            <li>Sports ground and indoor game facilities</li>
+            <li>Safe transportation services</li>
+            <li>Clean cafeteria and hygienic environment</li>
+        </ul>
+    </div>
 </section>
 
 <section id="activities" class="animate">
     <h2>Co-Curricular & Extra-Curricular Activities</h2>
-    <p>
-        Alpine Secondary School strongly believes in holistic education.
-        Students are encouraged to participate in various activities that enhance leadership,
-        creativity, and confidence.
-    </p>
-    <ul>
-        <li>Sports competitions and physical training</li>
-        <li>Music, dance, and cultural programs</li>
-        <li>Debates, quizzes, and speech competitions</li>
-        <li>Educational tours and workshops</li>
-        <li>Annual functions and social awareness programs</li>
-    </ul>
+    <div class="highlight">
+        <p class="mini-heading">
+            Alpine Secondary School strongly believes in holistic education. Students are encouraged to participate
+            in various activities that enhance leadership, creativity, and confidence.
+        </p>
+        <ul>
+            <li>Sports competitions and physical training</li>
+            <li>Music, dance, and cultural programs</li>
+            <li>Debates, quizzes, and speech competitions</li>
+            <li>Educational tours and workshops</li>
+            <li>Annual functions and social awareness programs</li>
+        </ul>
+    </div>
 </section>
 
 <section id="contact" class="animate">
@@ -312,11 +449,23 @@ const observer = new IntersectionObserver(entries => {
             entry.target.classList.remove("show");
         }
     });
-}, { threshold: 0.2 });
+}, { threshold: 0.25 });
 
 document.querySelectorAll(".animate").forEach(el => observer.observe(el));
+
+/* DARK MODE LOGIC (ONLY ADDED) */
+const toggle = document.getElementById("darkToggle");
+if (localStorage.getItem("darkMode") === "enabled") {
+    document.body.classList.add("dark-mode");
+    toggle.textContent = "☀️";
+}
+toggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+    const enabled = document.body.classList.contains("dark-mode");
+    localStorage.setItem("darkMode", enabled ? "enabled" : "disabled");
+    toggle.textContent = enabled ? "☀️" : "🌙";
+});
 </script>
 
 </body>
 </html>
-
