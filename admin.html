@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Panel - Alpine School</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Firebase CDN -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.box {
+    background: white;
+    padding: 30px;
+    width: 320px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+h2 {
+    text-align: center;
+}
+input, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+}
+button {
+    background: #1f6ae1;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+#dashboard {
+    display: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box" id="loginBox">
+    <h2>Admin Login</h2>
+    <input type="email" id="email" placeholder="Admin Email">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+</div>
+
+<div class="box" id="dashboard">
+    <h2>Admin Dashboard</h2>
+    <input type="text" id="noticeText" placeholder="Write notice here">
+    <button onclick="addNotice()">Add Notice</button>
+    <button onclick="logout()">Logout</button>
+</div>
+
+<script>
+/* 🔴 PASTE YOUR FIREBASE CONFIG HERE 🔴 */
+const firebaseConfig = {
+  apiKey: "AIzaSyCUtErl1fOeWcHbPfEwuZ3vch0LzW-fPg8",
+  authDomain: "alpine-school-admin.firebaseapp.com",
+  projectId: "alpine-school-admin",
+  storageBucket: "alpine-school-admin.firebasestorage.app",
+  messagingSenderId: "767913503884",
+  appId: "1:767913503884:web:cd1aed2400e96a99b95fa9"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+function login() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+            document.getElementById("loginBox").style.display = "none";
+            document.getElementById("dashboard").style.display = "block";
+        })
+        .catch(err => alert(err.message));
+}
+
+function logout() {
+    auth.signOut().then(() => location.reload());
+}
+
+function addNotice() {
+    const text = document.getElementById("noticeText").value;
+    db.collection("notices").add({
+        text: text,
+        time: new Date()
+    });
+    alert("Notice added");
+    document.getElementById("noticeText").value = "";
+}
+</script>
+
+</body>
+</html>
