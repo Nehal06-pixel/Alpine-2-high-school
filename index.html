@@ -301,41 +301,17 @@ footer {
 
 /* ===== MOBILE ===== */
 @media (max-width: 768px) {
-    header {
-        padding: 60px 20px;
-    }
-
-    .header-logo {
-        width: 85px;
-    }
-
-    header h1 {
-        font-size: 2.1rem;
-        letter-spacing: 2px;
-    }
-
-    header p {
-        font-size: 1rem;
-    }
-
-    section {
-        padding: 40px 6%;
-    }
-
-    section h2 {
-        font-size: 1.7rem;
-    }
-
-    .highlight {
-        padding: 20px;
-    }
-
-    footer {
-        font-size: 0.9rem;
-    }
+    header { padding: 60px 20px; }
+    .header-logo { width: 85px; }
+    header h1 { font-size: 2.1rem; letter-spacing: 2px; }
+    header p { font-size: 1rem; }
+    section { padding: 40px 6%; }
+    section h2 { font-size: 1.7rem; }
+    .highlight { padding: 20px; }
+    footer { font-size: 0.9rem; }
 }
 
-/* ===== DARK MODE (ONLY ADDED) ===== */
+/* ===== DARK MODE ===== */
 body.dark-mode {
     background-color: #0b1d2a;
     color: #dce7f3;
@@ -389,20 +365,7 @@ body.dark-mode li { color: #d1e7ff; }
     text-decoration: none;
     box-shadow: 0 10px 25px rgba(0,0,0,0.35);
     z-index: 9999;
-    animation: whatsappPulse 2.5s infinite;
-    transition: transform 0.3s ease;
 }
-
-.whatsapp-float:hover {
-    transform: scale(1.1);
-}
-
-@keyframes whatsappPulse {
-    0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.6); }
-    70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); }
-    100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
-}
-
 </style>
 </head>
 
@@ -417,6 +380,7 @@ body.dark-mode li { color: #d1e7ff; }
 </header>
 
 <nav>
+    <a href="#notice">Notice</a>
     <a href="#about">About</a>
     <a href="#academics">Academics</a>
     <a href="#facilities">Facilities</a>
@@ -424,13 +388,23 @@ body.dark-mode li { color: #d1e7ff; }
     <a href="contactus.html">Contact Us</a>
 </nav>
 
+<!-- ===== NOTICE BOARD (ADDED, NOTHING ELSE MOVED) ===== -->
+<section id="notice" class="animate">
+    <h2>Notice Board</h2>
+    <div class="highlight" id="noticeBoard">
+        <p>Loading notices...</p>
+    </div>
+</section>
+
 <section id="about" class="animate">
     <h2>About Alpine Secondary School</h2>
     <p align="justify">
-        Alpine is a secondary school is located in Shreepur-11, Birgunj. It was established in 1997. The school is known for its quality education
-        and extracurricular activities. The school offers education from grade Nursery to grade 12, following the national curriculum.  It has a team of dedicated teachers 
-        and staff who work towards the holistic development of students. The school also organizes various events and competitions
+        Alpine is a secondary school is located in Shreepur-11, Birgunj. It was established in 1997(AD). The school is known for its quality education
+        and extracurricular activities. The school offers education from grade Nursery to grade 12, following the national curriculum. It has a team of dedicated teachers 
+        and staff who work towards the holistic development of students.The school also organizes various events and competitions
          to encourage students to showcase their talents. Overall, Alpine secondary school is a reputable institution in the Birgunj area.
+
+
     </p>
     <p align="justify">
         Affiliated with the National Examination Board (NEB) and recognized by the Ministry of Education,
@@ -506,14 +480,16 @@ body.dark-mode li { color: #d1e7ff; }
     <p>Designed with dedication for quality education.</p>
 </footer>
 
+<!-- ===== FIREBASE SCRIPTS (ADDED ONLY) ===== -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
 <script>
+/* ===== ORIGINAL JS (UNCHANGED) ===== */
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-        } else {
-            entry.target.classList.remove("show");
-        }
+        if (entry.isIntersecting) entry.target.classList.add("show");
+        else entry.target.classList.remove("show");
     });
 }, { threshold: 0.25 });
 
@@ -530,15 +506,37 @@ toggle.addEventListener("click", () => {
     localStorage.setItem("darkMode", enabled ? "enabled" : "disabled");
     toggle.textContent = enabled ? "☀️" : "🌙";
 });
+
+/* ===== FIREBASE NOTICE CODE (ADDED ONLY) ===== */
+const firebaseConfig = {
+  apiKey: "AIzaSyCUtErl1fOeWcHbPfEwuZ3vch0LzW-fPg8",
+  authDomain: "alpine-school-admin.firebaseapp.com",
+  projectId: "alpine-school-admin",
+  storageBucket: "alpine-school-admin.firebasestorage.app",
+  messagingSenderId: "767913503884",
+  appId: "1:767913503884:web:cd1aed2400e96a99b95fa9"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+const noticeBoard = document.getElementById("noticeBoard");
+
+db.collection("notices").orderBy("time","desc").onSnapshot(snapshot => {
+    noticeBoard.innerHTML = "";
+    snapshot.forEach(doc => {
+        const p = document.createElement("p");
+        p.textContent = "• " + doc.data().text;
+        noticeBoard.appendChild(p);
+    });
+});
 </script>
 
-<!-- WHATSAPP BUTTON (ADD HERE) -->
+<!-- ===== WHATSAPP BUTTON ===== -->
 <a href="https://wa.me/+9779762180787?text=Hello%20I%20want%20to%20know%20about%20admission%20at%20Alpine%20Secondary%20School"
    class="whatsapp-float"
    target="_blank"
-   aria-label="Chat on WhatsApp">
-    💬
-</a>
+   aria-label="Chat on WhatsApp">💬</a>
 
 </body>
 </html>
