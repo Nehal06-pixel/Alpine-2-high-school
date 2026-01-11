@@ -446,10 +446,54 @@ body.dark-mode .map-container {
     box-shadow: 0 12px 30px rgba(0,0,0,0.6);
 }
 
+/* ===== STUDENT NAV BUTTONS ===== */
+.nav-btn {
+    padding: 8px 16px;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #1f6ae1, #00d4ff);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* ===== STUDENT PROFILE ICON ===== */
+.profile-icon {
+    position: fixed;
+    top: 80px;
+    right: 22px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #1f6ae1, #00d4ff);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    text-decoration: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+    z-index: 9999;
+    transition: transform 0.3s ease;
+}
+
+.profile-icon:hover {
+    transform: scale(1.1);
+}
+
 </style>
 </head>
 
 <body>
+
+    <!-- ===== STUDENT PROFILE ICON ===== -->
+<a href="login.html" id="profileIcon" class="profile-icon" aria-label="Student Profile">👤</a>
 
 <div class="dark-toggle" id="darkToggle">🌙</div>
 
@@ -460,11 +504,14 @@ body.dark-mode .map-container {
 </header>
 
 <nav>
-    <a href="#about">About</a>
+    <a href="overview.html">About Us</a>
     <a href="#academics">Academics</a>
     <a href="#facilities">Facilities</a>
     <a href="#activities">Activities</a>
     <a href="contactus.html">Contact Us</a>
+<a href="login.html" class="nav-btn">Student Login</a>
+<a href="signup.html" class="nav-btn">Student Signup</a>
+
 </nav>
 
 <!-- ===== NOTICE BOARD (ADDED, NOTHING ELSE MOVED) ===== -->
@@ -572,6 +619,7 @@ body.dark-mode .map-container {
 
 <!-- ===== FIREBASE SCRIPTS (ADDED ONLY) ===== -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
 <script>
@@ -621,6 +669,21 @@ div.textContent = doc.data().text;
 noticeBoard.appendChild(div);
     });
 });
+
+// ===== STUDENT PROFILE ICON LOGIC =====
+firebase.auth().onAuthStateChanged(user => {
+    const icon = document.getElementById("profileIcon");
+    if (!icon) return;
+
+    if (user) {
+        icon.href = "profile.html";
+        icon.title = "My Profile";
+    } else {
+        icon.href = "login.html";
+        icon.title = "Student Login";
+    }
+});
+
 </script>
 
 <!-- ===== WHATSAPP BUTTON ===== -->
