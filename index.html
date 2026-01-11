@@ -336,7 +336,7 @@ footer {
         overflow-x: hidden;
     }
 }
-  
+
 /* ===== DARK MODE ===== */
 body.dark-mode {
     background-color: #0b1d2a;
@@ -418,6 +418,34 @@ body.dark-mode .notice-text {
     color: #7dd3fc;
 }
 
+/* ===== GOOGLE MAP STYLES ===== */
+.map-container {
+    margin-top: 30px;
+    width: 100%;
+    height: 350px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Mobile adjustment */
+@media (max-width: 768px) {
+    .map-container {
+        height: 260px;
+    }
+}
+
+/* Dark mode compatibility */
+body.dark-mode .map-container {
+    box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+}
+
 </style>
 </head>
 
@@ -474,7 +502,7 @@ body.dark-mode .notice-text {
             <li>Early Childhood Development (Nursery-UKG)</li>
             <li>Primary Level (Grade 1–5)</li>
             <li>Lower Secondary Level (Grade 6–8)</li>
-            <li>Secondary Level (Grade 9–10)</li>
+            <li>Secondary Level (Grade 9–10 – SEE)</li>
             <li>Higher Secondary (+2 Science & Management)</li>
         </ul>
     </div>
@@ -526,6 +554,16 @@ body.dark-mode .notice-text {
         </p>
     </div>
 </section>
+
+<!-- ===== GOOGLE MAP ===== -->
+<div class="map-container">
+    <iframe
+        src="https://www.google.com/maps?q=Alpine+Secondary+School+Birgunj+Nepal&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        aria-label="Alpine Secondary School Location Map">
+    </iframe>
+</div>
 
 <footer class="animate">
     <p>© 2025 Alpine Secondary School, Birgunj. All Rights Reserved.</p>
@@ -593,7 +631,3 @@ noticeBoard.appendChild(div);
 
 </body>
 </html>
-
-
-
-
