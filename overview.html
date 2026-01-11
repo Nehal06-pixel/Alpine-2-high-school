@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alpine Secondary School | Birgunj, Nepal</title>
+
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@600;800&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= ROOT + THEME ================= */
+:root{
+    --bg-main:#f4f7fb;
+    --bg-card:#eaf2ff;
+    --text-main:#333;
+    --heading:#102a43;
+    --accent:#1f6ae1;
+    --accent-glow:#00d4ff;
+}
+
+body.dark{
+    --bg-main:#0b1d2a;
+    --bg-card:#102a43;
+    --text-main:#e6e6e6;
+    --heading:#ffffff;
+}
+
+/* ================= BASE ================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:var(--bg-main);
+    color:var(--text-main);
+    line-height:1.7;
+    transition:0.4s;
+}
+
+/* ================= DARK MODE BUTTON ================= */
+.theme-toggle{
+    position:fixed;
+    top:20px;
+    right:20px;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    border:none;
+    cursor:pointer;
+    background:#102a43;
+    color:#fff;
+    font-size:18px;
+    z-index:999;
+}
+
+/* ================= HEADER ================= */
+header{
+    background:linear-gradient(270deg,#0f2027,#203a43,#2c5364,#0f2027);
+    background-size:600% 600%;
+    animation:gradientMove 14s ease infinite;
+    color:#fff;
+    text-align:center;
+    padding:90px 20px;
+}
+
+header img{
+    width:140px;
+    margin-bottom:20px;
+}
+
+header h1{
+    font-family:'Orbitron',sans-serif;
+    font-size:3.2rem;
+    letter-spacing:4px;
+    background:linear-gradient(90deg,#00d4ff,#1f6ae1,#00d4ff);
+    background-size:300%;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:shimmer 6s linear infinite;
+}
+
+header p{
+    margin-top:15px;
+    font-size:1.1rem;
+    opacity:0.9;
+}
+
+/* ================= ABOUT US HEADING ================= */
+.about-heading{
+    text-align:center;
+    padding:70px 10% 30px;
+}
+
+.about-heading h2{
+    font-family:'Montserrat', sans-serif;
+    font-size:2.6rem;
+    letter-spacing:2px;
+    color:var(--heading);
+    margin-bottom:12px;
+    position:relative;
+}
+
+.about-heading h2::after{
+    content:"";
+    width:90px;
+    height:4px;
+    background:linear-gradient(90deg,#1f6ae1,#00d4ff);
+    display:block;
+    margin:14px auto 0;
+    border-radius:2px;
+}
+
+.about-heading p{
+    font-size:1.05rem;
+    opacity:0.85;
+}
+
+/* ================= STATS ================= */
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+    padding:70px 10%;
+}
+
+.stat-card{
+    background:var(--bg-card);
+    padding:40px;
+    text-align:center;
+    border-radius:16px;
+    box-shadow:0 15px 30px rgba(0,0,0,0.08);
+    transition:0.4s;
+}
+
+.stat-card:hover{
+    transform:translateY(-8px);
+}
+
+.stat-card h3{
+    font-size:2.8rem;
+    color:var(--accent);
+    margin-bottom:10px;
+}
+
+.stat-card p{
+    font-weight:600;
+}
+
+/* ================= WHY ALPINE STANDS APART ================= */
+.why-alpine{
+    padding:80px 10%;
+    background:var(--bg-main);
+}
+
+.section-title{
+    font-family:'Montserrat', sans-serif;
+    font-size:2.4rem;
+    letter-spacing:3px;
+    color:var(--heading);
+    margin-bottom:50px;
+    text-transform:uppercase;
+}
+
+.why-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+    gap:30px;
+}
+
+.why-card{
+    background:var(--bg-card);
+    padding:35px 28px;
+    border-radius:16px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.06);
+    transition:0.4s;
+}
+
+.why-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 30px 60px rgba(31,106,225,0.25);
+}
+
+.why-card h3{
+    font-size:1.3rem;
+    font-weight:700;
+    color:var(--heading);
+    margin-bottom:15px;
+}
+
+.why-card p{
+    font-size:1.02rem;
+    line-height:1.7;
+    opacity:0.85;
+}
+
+/* ================= DIRECTOR SECTION ================= */
+.director{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    padding:80px 10%;
+    align-items:center;
+}
+
+
+/* ================= DIRECTOR SECTION ================= */
+.director{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    padding:80px 10%;
+    align-items:center;
+}
+
+/* ================= DIRECTOR PHOTO & NAME ================= */
+.director-photo{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;   /* PUSHES CONTENT TO RIGHT */
+}
+
+.director-photo img{
+    max-width:100%;
+    border-radius:18px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.15);
+}
+
+.director-name{
+    margin-top:14px;
+    font-weight:600;
+    font-size:1.05rem;
+    color:var(--heading);
+    letter-spacing:0.5px;
+}
+
+.director img{
+    width:100%;
+    border-radius:18px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.15);
+}
+
+.director h2{
+    font-family:'Montserrat',sans-serif;
+    font-size:2.4rem;
+    color:var(--heading);
+    margin-bottom:20px;
+}
+
+.director h4{
+    margin-top:15px;
+    font-weight:600;
+    color:var(--accent);
+}
+
+.director p{
+    margin-bottom:15px;
+}
+
+/* ================= FOOTER ================= */
+footer{
+    background:#0b1d2a;
+    color:#ccc;
+    text-align:center;
+    padding:30px 15px;
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes gradientMove{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+@keyframes shimmer{
+    0%{background-position:0%}
+    100%{background-position:300%}
+}
+
+/* ================= MOBILE ================= */
+@media(max-width:900px){
+    .director{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+
+    header h1{
+        font-size:2.2rem;
+    }
+}
+
+/* ===== WHATSAPP FLOAT BUTTON ===== */
+.whatsapp-float {
+    position: fixed;
+    bottom: 22px;
+    right: 22px;
+    width: 56px;
+    height: 56px;
+    background-color: #25D366;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    text-decoration: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+    z-index: 9999;
+    animation: whatsappPulse 2.5s infinite;
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+@keyframes whatsappPulse {
+    0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.6); }
+    70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); }
+    100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+}
+
+</style>
+</head>
+
+<body>
+
+<button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+
+<header>
+    <img src="images/logo.png" alt="Alpine Logo">
+    <h1>ALPINE SECONDARY SCHOOL</h1>
+    <p>Excellence in Education | Birgunj, Nepal</p>
+</header>
+
+<section class="about-heading">
+    <h2>About Us</h2>
+    <p>Building excellence, character, and confidence since our foundation.</p>
+</section>
+
+<section class="stats">
+    <div class="stat-card">
+        <h3>25</h3>
+        <p>Years of Excellence</p>
+    </div>
+    <div class="stat-card">
+        <h3>1200</h3>
+        <p>Students</p>
+    </div>
+    <div class="stat-card">
+        <h3>50</h3>
+        <p>Teachers</p>
+    </div>
+    <div class="stat-card">
+        <h3>100%</h3>
+        <p>SEE Results</p>
+    </div>
+</section>
+
+<section class="why-alpine">
+    <h2 class="section-title">WHY ALPINE STANDS APART</h2>
+
+    <div class="why-grid">
+
+        <div class="why-card">
+            <h3>Future-Oriented Education</h3>
+            <p>
+                We blend academic excellence with critical thinking,
+                leadership skills, and career guidance to prepare students
+                for tomorrow’s challenges.
+            </p>
+        </div>
+
+        <div class="why-card">
+            <h3>Student-Centered Approach</h3>
+            <p>
+                Small class sizes ensure every student receives personal
+                attention, mentorship, and strong academic support.
+            </p>
+        </div>
+
+        <div class="why-card">
+            <h3>Trusted by Parents</h3>
+            <p>
+                Decades of trust built on discipline, transparency,
+                ethical values, and consistent academic success.
+            </p>
+        </div>
+
+        <div class="why-card">
+            <h3>Global Exposure</h3>
+            <p>
+                Preparing students for national and international
+                academic opportunities with confidence and competence.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section class="director">
+    <div>
+        <h2>Message from the Director</h2>
+        <p>
+            It is my pleasure to welcome you to Alpine Secondary School.
+            We believe education is not just about academics, but about
+            building character, confidence, and leadership.
+        </p>
+        <p>
+            Our dedicated faculty, modern facilities, and student-focused
+            approach ensure every learner reaches their true potential.
+        </p>
+        <p>
+            We look forward to welcoming you into our Alpine family.
+        </p>
+        <h4>— Binod Kumar Upadhyay</h4>
+    </div>
+
+<div class="director-photo">
+    <img src="images/director.jpg" alt="Director - Binod Kumar Upadhyay">
+    <p class="director-name">Binod Kumar Upadhyay</p>
+</div>
+
+</section>
+
+<footer>
+    <p>© 2025 Alpine Secondary School, Birgunj. All Rights Reserved.</p>
+</footer>
+
+<script>
+function toggleTheme(){
+    document.body.classList.toggle("dark");
+}
+</script>
+
+<!-- WHATSAPP BUTTON (ADD HERE) -->
+<a href="https://wa.me/+9779762180787?text=Hello%20I%20want%20to%20know%20more%20about%20Alpine%20Secondary%20School"
+   class="whatsapp-float"
+   target="_blank"
+   aria-label="Chat on WhatsApp">
+    💬
+</a>
+
+</body>
+</html>
