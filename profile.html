@@ -161,7 +161,7 @@ const db = firebase.firestore();
 
 auth.onAuthStateChanged(user=>{
     if(!user){
-        window.location.href="index.html";   // 🔒 BLOCK PROFILE
+        window.location.replace("index.html");
         return;
     }
 
@@ -208,7 +208,7 @@ function uploadPhoto(input){
 
 function logout(){
     auth.signOut().then(()=>{
-        window.location.href="index.html";   // ✅ MAIN PAGE AFTER LOGOUT
+        window.location.replace("index.html");
     });
 }
 
@@ -223,7 +223,7 @@ function deleteAccount(){
         db.collection("students").doc(user.uid).delete();
         user.delete().then(()=>{
             alert("Account deleted permanently");
-            window.location.href="signup.html";
+            window.location.replace("index.html");
         });
     }).catch(err=>alert(err.message));
 }
