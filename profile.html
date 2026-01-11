@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Profile | Alpine Secondary School</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Orbitron:wght@600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    min-height:100vh;
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.profile-card{
+    background:#fff;
+    width:100%;
+    max-width:520px;
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 25px 60px rgba(0,0,0,0.4);
+}
+
+.profile-card h1{
+    text-align:center;
+    font-family:'Orbitron',sans-serif;
+    color:#1f6ae1;
+    margin-bottom:10px;
+}
+
+.profile-pic{
+    width:130px;
+    height:130px;
+    margin:20px auto;
+    border-radius:50%;
+    overflow:hidden;
+    cursor:pointer;
+    background:linear-gradient(135deg,#1f6ae1,#00d4ff);
+    padding:4px;
+    animation:pulseGlow 3s infinite;
+}
+
+.profile-pic img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:50%;
+    background:#fff;
+}
+
+@keyframes pulseGlow{
+    0%{box-shadow:0 0 0 rgba(0,212,255,0.4)}
+    50%{box-shadow:0 0 30px rgba(0,212,255,0.9)}
+    100%{box-shadow:0 0 0 rgba(0,212,255,0.4)}
+}
+
+.upload-text{
+    text-align:center;
+    font-size:0.85rem;
+    color:#555;
+    margin-bottom:20px;
+}
+
+.profile-info p{
+    margin-bottom:8px;
+    font-size:0.95rem;
+}
+
+.profile-info span{
+    font-weight:600;
+    color:#102a43;
+}
+
+.btn{
+    width:100%;
+    padding:12px;
+    margin-top:12px;
+    border:none;
+    border-radius:10px;
+    font-size:1rem;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.logout-btn{
+    background:linear-gradient(135deg,#1f6ae1,#00d4ff);
+    color:#fff;
+}
+
+.delete-btn{
+    background:#e63946;
+    color:#fff;
+}
+
+@media(max-width:600px){
+    .profile-card{
+        margin:15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="profile-card">
+    <h1>My Profile</h1>
+
+    <div class="profile-pic" onclick="document.getElementById('photo').click()">
+        <img id="profileImage" src="https://i.imgur.com/6VBx3io.png">
+    </div>
+
+    <input type="file" id="photo" accept="image/*" hidden onchange="uploadPhoto(this)">
+
+    <div class="upload-text">Tap image to upload / change photo</div>
+
+    <div class="profile-info">
+        <p><span>Name:</span> <span id="name"></span></p>
+        <p><span>Email:</span> <span id="email"></span></p>
+        <p><span>Class:</span> <span id="class"></span></p>
+        <p><span>Roll No:</span> <span id="roll"></span></p>
+        <p><span>Phone:</span> <span id="phone"></span></p>
+        <p><span>Address:</span> <span id="address"></span></p>
+        <p><span>DOB:</span> <span id="dob"></span></p>
+        <p><span>Gender:</span> <span id="gender"></span></p>
+    </div>
+
+    <button class="btn logout-btn" onclick="logout()">Logout</button>
+    <button class="btn delete-btn" onclick="deleteAccount()">Delete Account</button>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyCUtErl1fOeWcHbPfEwuZ3vch0LzW-fPg8",
+  authDomain: "alpine-school-admin.firebaseapp.com",
+  projectId: "alpine-school-admin",
+  storageBucket: "alpine-school-admin.firebasestorage.app",
+  messagingSenderId: "767913503884",
+  appId: "1:767913503884:web:cd1aed2400e96a99b95fa9"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+auth.onAuthStateChanged(user=>{
+    if(!user){
+        window.location.href="login.html";
+        return;
+    }
+
+    document.getElementById("email").textContent = user.email;
+
+    db.collection("students").doc(user.uid).get().then(doc=>{
+        const d = doc.data();
+        document.getElementById("name").textContent = d.name || "";
+        document.getElementById("class").textContent = d.class || "";
+        document.getElementById("roll").textContent = d.roll || "";
+        document.getElementById("phone").textContent = d.phone || "";
+        document.getElementById("address").textContent = d.address || "";
+        document.getElementById("dob").textContent = d.dob || "";
+        document.getElementById("gender").textContent = d.gender || "";
+
+        if(d.photoBase64){
+            document.getElementById("profileImage").src = d.photoBase64;
+        }
+    });
+});
+
+function uploadPhoto(input){
+    const file = input.files[0];
+    if(!file) return;
+
+    if(file.size > 200 * 1024){
+        alert("Please choose a SMALL image (less than 200KB)");
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(){
+        const base64Image = reader.result;
+        const user = auth.currentUser;
+
+        document.getElementById("profileImage").src = base64Image;
+
+        db.collection("students").doc(user.uid).update({
+            photoBase64: base64Image
+        });
+    };
+    reader.readAsDataURL(file);
+}
+
+function logout(){
+    auth.signOut().then(()=>{
+        window.location.href="login.html";
+    });
+}
+
+function deleteAccount(){
+    const password = prompt("Enter your password to delete account:");
+    if(!password) return;
+
+    const user = auth.currentUser;
+    const cred = firebase.auth.EmailAuthProvider.credential(user.email,password);
+
+    user.reauthenticateWithCredential(cred).then(()=>{
+        db.collection("students").doc(user.uid).delete();
+        user.delete().then(()=>{
+            alert("Account deleted permanently");
+            window.location.href="signup.html";
+        });
+    }).catch(err=>alert(err.message));
+}
+</script>
+
+</body>
+</html>
