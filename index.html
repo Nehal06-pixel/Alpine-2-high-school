@@ -43,6 +43,11 @@
 }
 </script>
 
+<!-- === SEO MICRO ADDITIONS (SAFE ADD) === -->
+<link rel="canonical" href="https://www.alpineschoolbirgunj.edu.np/">
+<meta name="geo.region" content="NP-PARSA">
+<meta name="geo.placename" content="Birgunj">
+
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@600;800&family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
 
@@ -487,6 +492,250 @@ body.dark-mode .map-container {
     transform: scale(1.1);
 }
 
+/* === ACCESSIBILITY & PERFORMANCE (SAFE ADD) === */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ================================
+   3D NOTICE BOARD EFFECT (ADD ONLY)
+   ================================ */
+
+.notice-wrapper {
+    perspective: 1000px;
+}
+
+.notice-wrapper {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255,255,255,0.35), rgba(255,255,255,0.15));
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.4);
+
+    transform-style: preserve-3d;
+    transform: rotateX(6deg) rotateY(-6deg);
+    box-shadow:
+        0 25px 50px rgba(0,0,0,0.25),
+        inset 0 1px 1px rgba(255,255,255,0.5);
+
+    transition: transform 0.6s ease, box-shadow 0.6s ease;
+}
+
+/* Hover = more depth */
+.notice-wrapper:hover {
+    transform: rotateX(0deg) rotateY(0deg) translateZ(25px);
+    box-shadow:
+        0 40px 80px rgba(0,0,0,0.35),
+        inset 0 1px 1px rgba(255,255,255,0.6);
+}
+
+/* Inner glow layer */
+.notice-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    background: linear-gradient(120deg, rgba(255,255,255,0.35), transparent);
+    pointer-events: none;
+}
+
+/* 3D floating text */
+.notice-text {
+    transform: translateZ(35px);
+    text-shadow:
+        0 4px 10px rgba(0,0,0,0.25),
+        0 0 18px rgba(0,212,255,0.6);
+}
+
+/* Pause animation on hover */
+.notice-wrapper:hover .notice-text {
+    animation-play-state: paused;
+}
+
+/* ================================
+   HIGH VISIBILITY NOTICE BOARD
+   ================================ */
+
+.notice-wrapper {
+    background: linear-gradient(
+        135deg,
+        #1f6ae1,
+        #00d4ff
+    );
+    padding: 35px;
+    border-radius: 16px;
+    border: 3px solid #ffffff;
+
+    box-shadow:
+        0 25px 60px rgba(31,106,225,0.45),
+        0 0 0 6px rgba(0,212,255,0.25);
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* Light moving shine */
+.notice-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.5),
+        transparent
+    );
+    animation: noticeShine 4s linear infinite;
+}
+
+@keyframes noticeShine {
+    from { left: -60%; }
+    to { left: 120%; }
+}
+
+/* Text container */
+.notice-text {
+    color: #ffffff !important;
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-shadow:
+        0 4px 12px rgba(0,0,0,0.35);
+}
+
+/* Pause on hover */
+.notice-wrapper:hover .notice-text {
+    animation-play-state: paused;
+}
+
+.notice-badge {
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 6px 18px;
+    background: #ffcc00;
+    color: #102a43;
+    font-weight: 800;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    animation: badgePulse 1.8s infinite;
+}
+
+@keyframes badgePulse {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+}
+
+/* ==================================
+   MOBILE UI FIX (DOES NOT AFFECT DESKTOP)
+   ================================== */
+@media (max-width: 768px) {
+
+    /* HEADER FIX */
+    header {
+        padding: 50px 15px;
+    }
+
+    .header-logo {
+        width: 90px;
+        margin-bottom: 12px;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+        line-height: 1.3;
+    }
+
+    header p {
+        font-size: 0.95rem;
+        margin-top: 10px;
+    }
+
+    /* NAV FIX */
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    nav a {
+        margin: 5px;
+        font-size: 0.9rem;
+    }
+
+    .nav-btn {
+        padding: 8px 14px;
+        font-size: 0.9rem;
+        border-radius: 18px;
+    }
+
+    /* NOTICE BOARD FIX */
+    #notice {
+        padding: 35px 5%;
+    }
+
+    .notice-wrapper {
+        padding: 22px;
+        border-radius: 14px;
+        box-shadow:
+            0 18px 40px rgba(31,106,225,0.45),
+            0 0 0 4px rgba(0,212,255,0.25);
+    }
+
+    .notice-text {
+        font-size: 1.2rem;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+    /* MAKE NOTICE BOARD FULL WIDTH LOOK */
+    .highlight.notice-wrapper {
+        margin-left: -5%;
+        margin-right: -5%;
+        border-radius: 0 0 18px 18px;
+    }
+
+    /* FLOAT BUTTON FIX */
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 1.4rem;
+    }
+
+    .profile-icon {
+        width: 46px;
+        height: 46px;
+        font-size: 1.2rem;
+        top: 70px;
+    }
+}
+
+@media (max-width: 768px) {
+    .notice-wrapper::after {
+        content: "📢 IMPORTANT NOTICE";
+        position: absolute;
+        top: -14px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #ffcc00;
+        color: #102a43;
+        font-weight: 800;
+        font-size: 0.75rem;
+        padding: 5px 14px;
+        border-radius: 20px;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    }
+}
+
 </style>
 </head>
 
@@ -660,14 +909,14 @@ const db = firebase.firestore();
 
 const noticeBoard = document.getElementById("noticeBoard");
 
+/* === NOTICE BOARD COOL MARQUEE (LEVEL 2) === */
 db.collection("notices").orderBy("time","desc").onSnapshot(snapshot => {
-    noticeBoard.innerHTML = "";
-    snapshot.forEach(doc => {
-    const div = document.createElement("div");
-div.className = "notice-text";
-div.textContent = doc.data().text;
-noticeBoard.appendChild(div);
-    });
+    let notices = [];
+    snapshot.forEach(doc => notices.push("📢 " + doc.data().text));
+    noticeBoard.innerHTML =
+        '<div class="notice-text">' +
+        notices.join(" &nbsp;&nbsp;🔹&nbsp;&nbsp; ") +
+        '</div>';
 });
 
 // ===== STUDENT PROFILE ICON LOGIC =====
