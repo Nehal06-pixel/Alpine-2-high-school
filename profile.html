@@ -187,11 +187,11 @@ function uploadPhoto(input){
     const file = input.files[0];
     if(!file) return;
 
-    if(file.size > 200 * 1024){
-        alert("Please choose a SMALL image (less than 200KB)");
+    if(file.size > 1024 * 1024){
+        alert("Please choose an image smaller than 1mb");
         return;
     }
-
+    
     const reader = new FileReader();
     reader.onload = function(){
         const base64Image = reader.result;
@@ -231,3 +231,4 @@ function deleteAccount(){
 
 </body>
 </html>
+
