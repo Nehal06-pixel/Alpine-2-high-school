@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our +2 Teachers Team | Alpine Secondary School</title>
+
+<link rel="icon" href="images/favicon-64x64.png" type="image/png">
+<link rel="shortcut icon" href="images/favicon-64x64.png" type="image/png">
+
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* ===== BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7fb;
+    color: #102a43;
+    line-height: 1.8;
+}
+
+/* ===== HERO (MATCH MAIN SITE) ===== */
+.teachers-hero {
+    background: linear-gradient(270deg, #0f2027, #203a43, #2c5364, #0f2027);
+    background-size: 600% 600%;
+    animation: gradientMove 14s ease infinite;
+    color: white;
+    padding: 120px 8% 95px;
+    text-align: center;
+}
+
+/* LOGO */
+.teachers-logo {
+    width: 150px;
+    margin-bottom: 28px;
+    animation: logoFloat 6s ease-in-out infinite;
+}
+
+/* HERO TITLE */
+.teachers-hero h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+/* HERO TEXT */
+.teachers-hero p {
+    max-width: 960px;
+    margin: auto;
+    font-size: 1.1rem;
+    opacity: 0.95;
+}
+
+/* ===== TRUST SECTION ===== */
+.trust-section {
+    padding: 55px 10%;
+    background: #ffffff;
+    text-align: center;
+}
+
+.trust-section p {
+    max-width: 980px;
+    margin: auto;
+    font-size: 1.05rem;
+    color: #333;
+    line-height: 1.9;
+}
+
+/* ===== WHY TEACHERS ===== */
+.why-teachers {
+    padding: 80px 10%;
+    background: #f4f7fb;
+}
+
+.why-teachers h3 {
+    text-align: center;
+    font-size: 2.1rem;
+    font-weight: 800;
+    margin-bottom: 35px;
+}
+
+.why-teachers ul {
+    max-width: 950px;
+    margin: auto;
+    list-style: none;
+}
+
+.why-teachers li {
+    font-size: 1rem;
+    padding: 12px 0;
+    padding-left: 32px;
+    position: relative;
+}
+
+.why-teachers li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: #1f6ae1;
+    font-weight: bold;
+}
+
+/* ===== DEPARTMENT ===== */
+.department {
+    padding: 90px 8%;
+    background-color: #ffffff;
+}
+
+.department h3 {
+    text-align: center;
+    font-size: 2.3rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.department h3::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: #1f6ae1;
+    margin: 16px auto 0;
+    border-radius: 2px;
+}
+
+/* DEPT INTRO */
+.dept-intro {
+    text-align: center;
+    max-width: 900px;
+    margin: 22px auto 50px;
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.8;
+}
+
+/* ===== GRID ===== */
+.teachers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 45px;
+    justify-items: center;
+}
+
+/* ===== CARD ===== */
+.teacher-card {
+    background: #ffffff;
+    padding: 34px 24px;
+    border-radius: 26px;
+    text-align: center;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+    transition: all 0.5s ease;
+}
+
+.teacher-card:hover {
+    transform: translateY(-14px);
+    box-shadow: 0 32px 70px rgba(31,106,225,0.35);
+}
+
+/* IMAGE */
+.teacher-img {
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    position: relative;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.teacher-img::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: linear-gradient(
+        135deg,
+        #1f6ae1,
+        #00d4ff,
+        #1f6ae1
+    );
+    animation: glowRotate 6s linear infinite;
+
+box-shadow:
+    0 0 8px rgba(31,106,225,0.45);
+
+    z-index: 1;
+}
+
+.teacher-img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #ffffff;
+    position: relative;
+    z-index: 2;
+
+    border: 6px solid #ffffff; /* 🔥 FIXES GLASS ISSUE */
+    filter: none !important;
+}
+
+
+/* TEXT */
+.teacher-card h4 {
+    margin-top: 20px;
+    font-size: 1.2rem;
+}
+
+.teacher-card .qual {
+    font-size: 0.95rem;
+    color: #1f6ae1;
+    font-weight: 600;
+}
+
+.teacher-card .exp {
+    font-size: 0.85rem;
+    color: #555;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes logoFloat {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+@keyframes glowRotate {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+    .teachers-logo { width: 120px; }
+}
+
+@media (max-width: 768px) {
+    .teachers-hero {
+        padding: 90px 6% 75px;
+    }
+
+    .teachers-logo {
+        width: 85px;
+        margin-bottom: 20px;
+    }
+
+    .teachers-hero h2 {
+        font-size: 2rem;
+    }
+
+    .department h3 {
+        font-size: 1.8rem;
+    }
+
+    .teacher-img {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+.hod-badge {
+    display: inline-block;
+    margin: 6px 0;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: #fff3cd;
+    color: #856404;
+    border-radius: 20px;
+}
+
+.faculty-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 25px;
+    padding: 60px 8%;
+    background: #ffffff;
+    text-align: center;
+}
+
+.faculty-stats div {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.methodology {
+    padding: 80px 10%;
+    background: #f4f7fb;
+}
+
+.methodology h3 {
+    text-align: center;
+    font-size: 2.1rem;
+    font-weight: 800;
+    margin-bottom: 35px;
+}
+
+.methodology ul {
+    max-width: 900px;
+    margin: auto;
+    list-style: none;
+}
+
+.methodology li {
+    padding: 10px 0;
+    font-size: 1rem;
+}
+
+/* ===== INFO SECTIONS ===== */
+.info-section {
+    max-width: 900px;
+    margin: 70px auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    color: #102a43;
+    margin-bottom: 30px;
+}
+
+/* ===== TICK LIST ===== */
+.tick-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.tick-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 1.05rem;
+    margin-bottom: 16px;
+    line-height: 1.6;
+}
+
+.tick-list li::before {
+    content: "✔";
+    color: #1f6ae1;
+    font-weight: bold;
+    margin-top: 2px;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 1.6rem;
+    }
+
+    .tick-list li {
+        font-size: 0.95rem;
+    }
+}
+
+/* ===============================
+   PROFESSIONAL INFO SECTION ANIMATIONS
+================================ */
+
+/* Section entrance animation */
+.info-section {
+    opacity: 0;
+    transform: translateY(60px);
+    animation: sectionFadeUp 1.2s ease forwards;
+}
+
+/* Delay for second section */
+.info-section:nth-of-type(2) {
+    animation-delay: 0.3s;
+}
+
+/* Heading animation */
+.section-title {
+    position: relative;
+    animation: titleGlow 2.5s ease-in-out infinite alternate;
+}
+
+/* Underline reveal */
+.section-title::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #1f6ae1, #00d4ff);
+    margin: 12px auto 0;
+    border-radius: 4px;
+    animation: underlineGrow 1.2s ease forwards;
+}
+
+/* Tick list animation */
+.tick-list li {
+    opacity: 0;
+    transform: translateX(-40px);
+    animation: listSlideIn 0.7s ease forwards;
+}
+
+/* Stagger effect */
+.tick-list li:nth-child(1) { animation-delay: 0.2s; }
+.tick-list li:nth-child(2) { animation-delay: 0.35s; }
+.tick-list li:nth-child(3) { animation-delay: 0.5s; }
+.tick-list li:nth-child(4) { animation-delay: 0.65s; }
+.tick-list li:nth-child(5) { animation-delay: 0.8s; }
+.tick-list li:nth-child(6) { animation-delay: 0.95s; }
+
+/* Hover effect (desktop only) */
+@media (hover: hover) {
+    .tick-list li:hover {
+        transform: translateX(8px) scale(1.02);
+        transition: all 0.3s ease;
+    }
+}
+
+/* ===============================
+   KEYFRAMES
+================================ */
+
+@keyframes sectionFadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes listSlideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes underlineGrow {
+    to {
+        width: 90px;
+    }
+}
+
+@keyframes titleGlow {
+    0% {
+        text-shadow: 0 0 0 rgba(31,106,225,0);
+    }
+    100% {
+        text-shadow: 0 0 18px rgba(31,106,225,0.45);
+    }
+}
+
+/* ===============================
+   COOL DEPARTMENT HEADING ANIMATION
+================================ */
+
+.dept-heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.1rem;
+    letter-spacing: 2px;
+    color: #102a43;
+    text-transform: uppercase;
+    margin: 80px 0 20px;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: deptFadeUp 1s ease forwards;
+    position: relative;
+}
+
+/* Icon animation */
+.dept-icon {
+    font-size: 2.2rem;
+    animation: iconFloat 3s ease-in-out infinite;
+}
+
+/* Text glow */
+.dept-text {
+    animation: textGlowSoft 2.5s ease-in-out infinite alternate;
+}
+
+/* Animated underline */
+.dept-heading::after {
+    content: "";
+    position: absolute;
+    bottom: -14px;
+    width: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #1f6ae1, #00d4ff);
+    border-radius: 4px;
+    animation: underlineDraw 1.2s ease forwards;
+}
+
+/* Hover magic (desktop only) */
+@media (hover: hover) {
+    .dept-heading:hover {
+        transform: translateY(-4px) scale(1.02);
+        transition: all 0.4s ease;
+    }
+}
+
+/* ===============================
+   KEYFRAMES
+================================ */
+
+@keyframes deptFadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes underlineDraw {
+    to {
+        width: 140px;
+    }
+}
+
+@keyframes iconFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+@keyframes textGlowSoft {
+    from {
+        text-shadow: 0 0 0 rgba(31,106,225,0);
+    }
+    to {
+        text-shadow: 0 0 18px rgba(31,106,225,0.35);
+    }
+}
+
+/* ===============================
+   MOBILE OPTIMIZATION
+================================ */
+
+@media (max-width: 768px) {
+    .dept-heading {
+        font-size: 1.5rem;
+        gap: 10px;
+        text-align: center;
+        flex-wrap: wrap;
+    }
+
+    .dept-icon {
+        font-size: 1.6rem;
+    }
+
+    .dept-heading::after {
+        width: 80px;
+    }
+}
+
+/* ===== FOOTER COPYRIGHT ===== */
+.site-footer {
+    background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+    color: #ffffff;
+    text-align: center;
+    padding: 22px 12px;
+    font-size: 0.95rem;
+}
+
+.site-footer strong {
+    color: #00d4ff;
+}
+
+.site-footer span {
+    opacity: 0.9;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .site-footer {
+        font-size: 0.85rem;
+        padding: 18px 10px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="teachers-hero">
+    <img src="images/logo.png" alt="Alpine Secondary School Logo" class="teachers-logo">
+    <h2>👨‍🏫 Our +2 Teachers Team</h2>
+    <p>
+        At Alpine Secondary School, we proudly introduce our inspiring +2 teaching faculty —
+        a team of dedicated mentors, subject experts, and academic guides 🚀
+        who nurture young minds towards excellence in Science & Management with
+        discipline, care, and innovation 💡📘.
+    </p>
+</section>
+
+<!-- ===== TRUST ===== -->
+<section class="trust-section">
+    <p>
+        🎓 Our +2 teachers are carefully selected based on academic excellence,
+        years of classroom experience, and commitment to student success.
+        With senior educators leading each department 🧠📚,
+        we ensure strong conceptual clarity, disciplined learning,
+        and outstanding board examination performance — and much more ✨.
+    </p>
+</section>
+
+</section>   <!-- trust-section ends here -->
+
+<section class="faculty-stats">
+    <div>👨‍🏫 <strong>30+</strong><br>Experienced Teachers</div>
+    <div>🎓 <strong>200+</strong><br>Years Combined Experience</div>
+    <div>📘 <strong>100%</strong><br>Board-Oriented Teaching</div>
+    <div>🏆 <strong>Proven</strong><br>Academic Results</div>
+</section>
+
+<!-- ===== TEACHING METHODOLOGY ===== -->
+<section class="info-section">
+    <h2 class="section-title">🧠 Our Teaching Methodology</h2>
+
+    <ul class="tick-list">
+        <li>Concept-based learning with clear fundamentals 📘</li>
+        <li>Practical demonstrations and laboratory sessions 🔬</li>
+        <li>Regular tests, assessments, and performance feedback 📊</li>
+        <li>Focused doubt-clearing and revision-oriented teaching ✍️</li>
+        <li>Personal attention and continuous academic mentoring 🤝</li>
+    </ul>
+</section>
+
+
+<!-- ===== WHY PARENTS TRUST US ===== -->
+<section class="info-section">
+    <h2 class="section-title">🌟 Why Parents Trust Our +2 Teachers</h2>
+
+    <ul class="tick-list">
+        <li>Highly qualified subject experts with strong academic backgrounds 🎓</li>
+        <li>Years of experience guiding students in Science & Management streams 🧠</li>
+        <li>Student-friendly teaching with discipline, care, and motivation 💙</li>
+        <li>Continuous mentoring, evaluation, and academic monitoring 📈</li>
+        <li>Focused preparation for board & competitive examinations 🎯</li>
+        <li>Many more academic strengths that shape confident learners 🚀</li>
+    </ul>
+</section>
+
+<!-- ===== ENGLISH & NEPALI ===== -->
+<section class="department">
+<h3 class="dept-heading">
+    <span class="dept-icon">📘</span>
+    <span class="dept-text">English & Nepali Department</span>
+</h3>
+<p class="dept-intro">
+    Our English & Nepali faculty builds strong language foundations ✍️,
+    enhances communication skills 🗣️, develops literary understanding 📚,
+    and prepares students for confident academic performance — and beyond 🌟.
+</p>
+
+<div class="teachers-grid">
+
+<div class="teacher-card">
+<div class="teacher-img"><img src="images/nepali sir.png"></div>
+<h4>Dilip K. Singh</h4>
+<p class="qual">M.Ed. (Nepali)</p>
+<span class="exp">🎓 22 Years Experience</span>
+</div>
+
+<div class="teacher-card">
+<div class="teacher-img"><img src="images/rampukar yadav.png"></div>
+<h4>Rampukar Yadav</h4>
+<p class="qual">M.Ed. (Nepali)</p>
+<span class="exp">🎓 16 Years Experience</span>
+</div>
+
+<div class="teacher-card">
+<div class="teacher-img"><img src="images/binod kumar srivastav.png"></div>
+<h4>Binod K. Shrivastav</h4>
+<p class="qual">M.Ed. (English)</p>
+<span class="exp">🎓 21 Years Experience</span>
+</div>
+
+<div class="teacher-card">
+<div class="teacher-img"><img src="images/bijay kishor rawat.png"></div>
+<h4>Bijay Kishor Rawat</h4>
+<p class="qual">M.Ed. (English)</p>
+<span class="exp">🎓 16 Years Experience</span>
+</div>
+
+</div>
+</section>
+
+<!-- ===== BIOLOGY & COMPUTER ===== -->
+<section class="department">
+<h3 class="dept-heading">
+    <span class="dept-icon">🧬</span>
+    <span class="dept-text">Biology & Computer Department</span>
+</h3>
+<p class="dept-intro">
+The Biology and Computer department emphasizes practical learning 🧪💻, 
+strong conceptual understanding 🧠📘, and technology-oriented education 🚀📊.
+
+</p>
+
+<div class="teachers-grid">
+
+<div class="teacher-card">
+<div class="teacher-img"><img src="images/akbar sir.png"></div>
+<h4>Akbar Hussen</h4>
+<p class="qual">M.Sc. Botany</p>
+<span class="exp">🎓 16 Years Experience</span>
+</div>
+
+<div class="teacher-card">
+<div class="teacher-img"><img src="images/bijay sir.png"></div>
+<h4>Bijay Kushwaha</h4>
+<p class="qual">M.Sc. IT</p>
+<span class="exp">🎓 12 Years Experience</span>
+</div>
+
+<div class="teacher-card">
+<div class="teacher-img"><img src="images/munna.png"></div>
+<h4>Munna Thakur</h4>
+<p class="qual">MCA</p>
+<span class="exp">🎓 11 Years Experience</span>
+</div>
+
+<div class="teacher-card">
+<div class="teacher-img"><img src="images/anikit.png"></div>
+<h4>Ankit Kumar</h4>
+<p class="qual">B.Tech (CSE)</p>
+<span class="exp">🎓 3 Years Experience</span>
+</div>
+
+</div>
+</section>
+
+<!-- ===== MATHEMATICS ===== -->
+<section class="department">
+<h3 class="dept-heading">
+    <span class="dept-icon">➗</span>
+    <span class="dept-text">Mathematics Department</span>
+</h3>
+<p class="dept-intro">
+    The Mathematics department at Alpine Secondary School builds strong logical thinking 🧠➗,
+    enhances problem-solving and analytical skills ✏️📐,
+    and develops deep conceptual clarity 📘 that supports academic excellence
+    across all science disciplines and competitive examinations 🎯🎓.
+</p>
+
+<div class="teachers-grid">
+
+<div class="teacher-card">
+    <div class="teacher-img">
+        <img src="images/binod.png">
+    </div>
+    <h4>Binod Sah</h4>
+    <p class="qual">M.Sc. Mathematics (HOD)</p>
+    <span class="hod-badge">🏅 Head of Department</span><br>
+    <span class="exp">🎓 26 Years Experience</span>
+</div>
+
+<div class="teacher-card">
+    <div class="teacher-img">
+        <img src="images/munna parsad.png">
+    </div>
+    <h4>Munna Prasad Sah</h4>
+    <p class="qual">M.Sc. Mathematics</p>
+    <span class="exp">🎓 12 Years Experience</span>
+</div>
+
+<div class="teacher-card">
+    <div class="teacher-img">
+        <img src="images/binod sir.png">
+    </div>
+    <h4>Binod Chauhan</h4>
+    <p class="qual">M.Sc. Mathematics</p>
+    <span class="exp">🎓 24 Years Experience</span>
+</div>
+
+<div class="teacher-card">
+    <div class="teacher-img">
+        <img src="images/rikdev.png">
+    </div>
+    <h4>Rikdev Sahani</h4>
+    <p class="qual">M.Sc. Mathematics</p>
+    <span class="exp">🎓 16 Years Experience</span>
+</div>
+
+<div class="teacher-card">
+    <div class="teacher-img">
+        <img src="images/dharmendra.png">
+    </div>
+    <h4>Dharmendra Pandey</h4>
+    <p class="qual">M.Ed. Mathematics</p>
+    <span class="exp">🎓 18 Years Experience</span>
+</div>
+
+<div class="teacher-card">
+    <div class="teacher-img">
+        <img src="images/rakesh.png">
+    </div>
+    <h4>Rakesh Chaurasiya</h4>
+    <p class="qual">M.Ed. Mathematics</p>
+    <span class="exp">🎓 14 Years Experience</span>
+</div>
+
+<div class="teacher-card">
+    <div class="teacher-img">
+        <img src="images/mustak.png">
+    </div>
+    <h4>Mustak Raza</h4>
+    <p class="qual">M.Sc. Mathematics</p>
+    <span class="exp">🎓 12 Years Experience</span>
+</div>
+
+</div>
+</section>
+
+
+<!-- ===== PHYSICS ===== -->
+<section class="department">
+<h3 class="dept-heading">
+    <span class="dept-icon">⚛️</span>
+    <span class="dept-text">Physics Department</span>
+</h3>
+<p class="dept-intro">
+    Our Physics department focuses on strong conceptual understanding ⚛️🧠,
+    real-world application of scientific principles 🌍🔬,
+    and numerical problem-solving skills 📐✏️,
+    preparing students for board examinations and future careers in engineering,
+    technology, and applied sciences 🚀🎓.
+</p>
+
+<div class="teachers-grid">
+
+<div class="teacher-card">
+    <div class="teacher-img">
+        <img src="images/shyam.png">
+    </div>
+    <h4>Shyam Sundar Sarraf</h4>
+    <p class="qual">M.Sc. Physics (HOD)</p>
+    <span class="hod-badge">🏅 Head of Department</span><br>
+    <span class="exp">🎓 12 Years Experience</span>
+</div>
+
+<div class="teacher-card">
+    <div class="teacher-img">
+        <img src="images/gyanendar.png">
+    </div>
+    <h4>Gyanendra Chaudhary</h4>
+    <p class="qual">M.Sc. Physics</p>
+    <span class="exp">🎓 10 Years Experience</span>
+</div>
+
+<div class="teacher-card">
+    <div class="teacher-img">
+        <img src="images/babaul.png">
+    </div>
+    <h4>Babul Singh</h4>
+    <p class="qual">B.Tech (EEE)</p>
+    <span class="exp">🎓 5 Years Experience</span>
+</div>
+
+<div class="teacher-card">
+    <div class="teacher-img">
+        <img src="images/amitabh.png">
+    </div>
+    <h4>Amitabh Kushwaha</h4>
+    <p class="qual">M.Sc. Physics</p>
+    <span class="exp">🎓 10 Years Experience</span>
+</div>
+
+<div class="teacher-card">
+    <div class="teacher-img">
+        <img src="images/manoj.png">
+    </div>
+    <h4>Manoj Yadav</h4>
+    <p class="qual">M.Sc. Physics</p>
+    <span class="exp">🎓 11 Years Experience</span>
+</div>
+
+</div>
+</section>
+
+
+<!-- ===== CHEMISTRY ===== -->
+<section class="department">
+<h3 class="dept-heading">
+    <span class="dept-icon">🧪</span>
+    <span class="dept-text">Chemistry Department</span>
+</h3>
+<p class="dept-intro">
+    The Chemistry department balances theoretical knowledge 📘🧪
+    with hands-on laboratory experience 🔬⚗️,
+    strengthening analytical thinking 🧠📊,
+    and preparing students for board exams, medical studies,
+    engineering, and higher education in science fields 🎯🎓.
+</p>
+
+<div class="teachers-grid">
+
+<div class="teacher-card">
+    <div class="teacher-img">
+        <img src="images/daruka sir.png">
+    </div>
+    <h4>Deepak Daruka</h4>
+    <p class="qual">M. Pharma (HOD)</p>
+    <span class="hod-badge">🏅 Head of Department</span><br>
+    <span class="exp">🎓 10 Years Experience</span>
+</div>
+
+<div class="teacher-card">
+    <div class="teacher-img">
+        <img src="images/baroon.png">
+    </div>
+    <h4>Baroon K. Nishad</h4>
+    <p class="qual">M.Sc. Chemistry</p>
+    <span class="exp">🎓 11 Years Experience</span>
+</div>
+
+<div class="teacher-card">
+    <div class="teacher-img">
+        <img src="images/afroj sir.png">
+    </div>
+    <h4>Afroj Ansari</h4>
+    <p class="qual">M. Pharm</p>
+    <span class="exp">🎓 5 Years Experience</span>
+</div>
+
+<div class="teacher-card">
+    <div class="teacher-img">
+        <img src="images/shravan.png">
+    </div>
+    <h4>Shravan Kumar Shah</h4>
+    <p class="qual">M.Sc. Chemistry</p>
+    <span class="exp">🎓 8 Years Experience</span>
+</div>
+
+<div class="teacher-card">
+    <div class="teacher-img">
+        <img src="images/ashutosh.png">
+    </div>
+    <h4>Ashutosh Yadav</h4>
+    <p class="qual">M.Sc. Chemistry</p>
+    <span class="exp">🎓 8 Years Experience</span>
+</div>
+
+</div>
+
+</section>
+
+<!-- ===== COPYRIGHT FOOTER ===== -->
+<footer class="site-footer">
+    <span>
+        © <strong>Alpine Secondary School</strong>, Birgunj<br>
+        All Rights Reserved | +2 Science & Management
+    </span>
+</footer>
+
+</body>
+</html>
