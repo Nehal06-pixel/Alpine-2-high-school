@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact Us | Alpine Secondary School</title>
 
+<link rel="icon" href="images/favicon-64x64.png" type="image/png">
+<link rel="shortcut icon" href="images/favicon-64x64.png" type="image/png">
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
 
 <style>
@@ -192,6 +195,32 @@ footer{
         grid-template-columns:1fr;
     }
 }
+
+/* ===== FOOTER COPYRIGHT ===== */
+.site-footer {
+    background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+    color: #ffffff;
+    text-align: center;
+    padding: 22px 12px;
+    font-size: 0.95rem;
+}
+
+.site-footer strong {
+    color: #00d4ff;
+}
+
+.site-footer span {
+    opacity: 0.9;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .site-footer {
+        font-size: 0.85rem;
+        padding: 18px 10px;
+    }
+}
+
 </style>
 </head>
 
@@ -220,9 +249,14 @@ footer{
 </form>
 </section>
 
-<footer>
-<p>© 2025 Alpine Secondary School, Birgunj. All Rights Reserved.</p>
+<!-- ===== COPYRIGHT FOOTER ===== -->
+<footer class="site-footer">
+    <span>
+        © <strong>Alpine Secondary School</strong>, Birgunj<br>
+        All Rights Reserved | +2 Science & Management
+    </span>
 </footer>
+
 
 </body>
 </html>
