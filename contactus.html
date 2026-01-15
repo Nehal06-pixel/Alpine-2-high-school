@@ -245,7 +245,7 @@ footer{
 
 <body>
 
-    <a href="index.html" class="home-btn">🏠 Home</a>
+<a href="index.html" id="homeBtn" class="home-btn">🏠 Home</a>
 
 <header>
     <h1>Contact Us</h1>
@@ -278,6 +278,17 @@ footer{
     </span>
 </footer>
 
+<script>
+const homeBtn = document.getElementById("homeBtn");
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+        homeBtn.classList.add("hide");   // hide when scrolling down
+    } else {
+        homeBtn.classList.remove("hide"); // show when at top
+    }
+});
+</script>
 
 </body>
 </html>
