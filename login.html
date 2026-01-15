@@ -107,6 +107,18 @@ input{
 
     <button class="login-btn" onclick="login()">Login</button>
 
+    <div style="text-align:center;margin:18px 0;color:#777;font-size:0.9rem;">
+    ── OR ──
+</div>
+
+<button class="login-btn"
+        style="background:#fff;color:#333;border:1px solid #ccc;"
+        onclick="googleLogin()">
+    <img src="https://www.svgrepo.com/show/475656/google-color.svg"
+         style="width:18px;vertical-align:middle;margin-right:8px;">
+    Continue with Google
+</button>
+
     <div class="signup-link">
         New student? <a href="signup.html">Create account</a>
     
@@ -135,6 +147,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
+const provider = new firebase.auth.GoogleAuthProvider();
+
 function login(){
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
@@ -144,6 +158,25 @@ function login(){
         window.location.href="profile.html";
     })
     .catch(err=>alert(err.message));
+}
+
+function googleLogin(){
+    auth.signInWithPopup(provider)
+    .then(result => {
+        const user = result.user;
+
+        firebase.firestore()
+            .collection("students")
+            .doc(user.uid)
+            .set({
+                name: user.displayName || "",
+                email: user.email,
+                createdAt: new Date()
+            }, { merge: true });
+
+        window.location.href = "profile.html";
+    })
+    .catch(err => alert(err.message));
 }
 
 function resetPassword(){
