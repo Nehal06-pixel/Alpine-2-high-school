@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Admin Panel - Alpine School</title>
+
+<link rel="icon" href="images/favicon-64x64.png" type="image/png">
+<link rel="shortcut icon" href="images/favicon-64x64.png" type="image/png">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- Firebase CDN -->
@@ -48,6 +52,7 @@ button {
 
 <body>
 
+<!-- LOGIN -->
 <div class="box" id="loginBox">
     <h2>Admin Login</h2>
     <input type="email" id="email" placeholder="Admin Email">
@@ -55,15 +60,16 @@ button {
     <button onclick="login()">Login</button>
 </div>
 
+<!-- DASHBOARD -->
 <div class="box" id="dashboard">
-    <h2>Admin Dashboard</h2>
+    <h2>Admin Dashboard 🔐</h2>
     <input type="text" id="noticeText" placeholder="Write notice here">
     <button onclick="addNotice()">Add Notice</button>
     <button onclick="logout()">Logout</button>
 </div>
 
 <script>
-/* 🔴 PASTE YOUR FIREBASE CONFIG HERE 🔴 */
+/* FIREBASE CONFIG */
 const firebaseConfig = {
   apiKey: "AIzaSyCUtErl1fOeWcHbPfEwuZ3vch0LzW-fPg8",
   authDomain: "alpine-school-admin.firebaseapp.com",
@@ -74,32 +80,56 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+
 const auth = firebase.auth();
 const db = firebase.firestore();
 
+/* 🔐 ADMIN CHECK */
+auth.onAuthStateChanged(async user => {
+    if (!user) {
+        document.getElementById("loginBox").style.display = "block";
+        document.getElementById("dashboard").style.display = "none";
+        return;
+    }
+
+    const token = await user.getIdTokenResult();
+
+    if (token.claims.admin === true) {
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("dashboard").style.display = "block";
+    } else {
+        alert("❌ Access denied. Admin only.");
+        auth.signOut();
+        location.reload();
+    }
+});
+
+/* LOGIN */
 function login() {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
+
     auth.signInWithEmailAndPassword(email, password)
-        .then(() => {
-            document.getElementById("loginBox").style.display = "none";
-            document.getElementById("dashboard").style.display = "block";
-        })
         .catch(err => alert(err.message));
 }
 
+/* LOGOUT */
 function logout() {
     auth.signOut().then(() => location.reload());
 }
 
+/* ADD NOTICE (ADMIN ONLY) */
 function addNotice() {
     const text = document.getElementById("noticeText").value;
+    if (!text) return alert("Write notice first");
+
     db.collection("notices").add({
         text: text,
         time: new Date()
-    });
-    alert("Notice added");
-    document.getElementById("noticeText").value = "";
+    }).then(() => {
+        alert("Notice added");
+        document.getElementById("noticeText").value = "";
+    }).catch(err => alert(err.message));
 }
 </script>
 
