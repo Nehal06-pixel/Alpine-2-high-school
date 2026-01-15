@@ -186,6 +186,7 @@ firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
 const db = firebase.firestore();
+const googleProvider = new firebase.auth.GoogleAuthProvider();
 
 auth.onAuthStateChanged(user=>{
     if(!user){
@@ -255,6 +256,29 @@ function deleteAccount(){
         });
     }).catch(err=>alert(err.message));
 }
+
+function deleteAccount(){
+    const user = auth.currentUser;
+    if(!user) return;
+
+    if(!confirm("Are you sure? This will permanently delete your account.")) return;
+
+    user.reauthenticateWithPopup(googleProvider)
+    .then(() => {
+        return db.collection("students").doc(user.uid).delete();
+    })
+    .then(() => {
+        return user.delete();
+    })
+    .then(() => {
+        alert("Account deleted successfully");
+        window.location.replace("index.html");
+    })
+    .catch(err => {
+        alert(err.message);
+    });
+}
+
 </script>
 
 <script>
