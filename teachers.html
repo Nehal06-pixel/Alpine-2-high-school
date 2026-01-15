@@ -608,11 +608,14 @@ box-shadow:
     border-radius: 25px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     z-index: 9999;
-    transition: transform 0.3s ease;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.home-btn:hover {
-    transform: scale(1.08);
+/* hidden state */
+.home-btn.hide {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
 }
 
 </style>
@@ -620,7 +623,7 @@ box-shadow:
 
 <body>
 
-    <a href="index.html" class="home-btn">🏠 Home</a>
+ <a href="index.html" id="homeBtn" class="home-btn">🏠 Home</a>
 
 <!-- ===== HERO ===== -->
 <section class="teachers-hero">
@@ -994,6 +997,18 @@ strong conceptual understanding 🧠📘, and technology-oriented education 🚀
         All Rights Reserved | +2 Science & Management
     </span>
 </footer>
+
+<script>
+const homeBtn = document.getElementById("homeBtn");
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+        homeBtn.classList.add("hide");   // hide when scrolling down
+    } else {
+        homeBtn.classList.remove("hide"); // show when at top
+    }
+});
+</script>
 
 </body>
 </html>
