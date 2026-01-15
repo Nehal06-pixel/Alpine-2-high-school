@@ -164,17 +164,25 @@ function googleLogin(){
     auth.signInWithPopup(provider)
     .then(result => {
         const user = result.user;
+        const uid = user.uid;
 
+        // 🔍 Check if student already exists
         firebase.firestore()
             .collection("students")
-            .doc(user.uid)
-            .set({
-                name: user.displayName || "",
-                email: user.email,
-                createdAt: new Date()
-            }, { merge: true });
+            .doc(uid)
+            .get()
+            .then(doc => {
+                if (doc.exists) {
+                    // ✅ Student exists → allow login
+                    window.location.href = "profile.html";
+                } else {
+                    // ❌ Student NOT registered → block
+                    alert("❌ This Google account is not registered.\nPlease sign up first.");
 
-        window.location.href = "profile.html";
+                    // logout immediately
+                    auth.signOut();
+                }
+            });
     })
     .catch(err => alert(err.message));
 }
