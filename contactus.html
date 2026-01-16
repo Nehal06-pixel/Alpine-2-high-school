@@ -256,9 +256,11 @@ footer{
 </header>
 
 <section class="contact-section">
-<form action="https://api.web3forms.com/submit" method="POST">
+<form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
 
 <input type="hidden" name="access_key" value="e73040f6-d0ae-4cc7-a720-2fb00fca533e">
+
+<input type="hidden" name="redirect" value="false">
 
 <input type="text" name="first_name" placeholder="First Name" required>
 <input type="text" name="last_name" placeholder="Last Name" required>
@@ -271,6 +273,28 @@ footer{
 <button type="submit">Submit Message</button>
 
 </form>
+
+<!-- ===== THANK YOU MESSAGE ===== -->
+<div id="thankYouBox" style="display:none; text-align:center; padding:40px 20px;">
+    <img src="images/logo.png" alt="Alpine Logo" style="width:90px; margin-bottom:15px;">
+    
+    <h2 style="color:#1f6ae1; font-family:'Montserrat',sans-serif;">
+        Thank You for Contacting Us!
+    </h2>
+
+    <p style="font-size:1.05rem; margin-top:12px; color:#444;">
+        Your message has been successfully submitted.
+    </p>
+
+    <p style="margin-top:10px; font-style:italic; color:#666;">
+        “Education is the passport to the future, for tomorrow belongs to those who prepare for it today.”
+    </p>
+
+    <p style="margin-top:18px; font-weight:600; color:#102a43;">
+        — Alpine Secondary School, Birgunj
+    </p>
+</div>
+
 </section>
 
 <!-- ===== COPYRIGHT FOOTER ===== -->
@@ -290,6 +314,30 @@ window.addEventListener("scroll", () => {
     } else {
         homeBtn.classList.remove("hide"); // show when at top
     }
+});
+</script>
+
+<script>
+const form = document.getElementById("contactForm");
+const thankYouBox = document.getElementById("thankYouBox");
+
+form.addEventListener("submit", async function (e) {
+    e.preventDefault(); // STOP PAGE CHANGE
+
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+        method: "POST",
+        body: formData
+    }).then(response => {
+        if (response.ok) {
+            form.style.display = "none";
+            thankYouBox.style.display = "block";
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        } else {
+            alert("Something went wrong. Please try again.");
+        }
+    });
 });
 </script>
 
