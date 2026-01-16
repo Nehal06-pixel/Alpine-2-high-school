@@ -70,10 +70,35 @@ input,select{
 .login-link{text-align:center;margin-top:15px}
 .login-link a{color:#1f6ae1;text-decoration:none;font-weight:600}
 .hidden{display:none}
+
+.home-btn {
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    padding: 10px 16px;
+    background: linear-gradient(135deg, #1f6ae1, #00d4ff);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 25px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    z-index: 9999;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* hidden state */
+.home-btn.hide {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+}
+
 </style>
 </head>
 
 <body>
+
+    <a href="index.html" id="homeBtn" class="home-btn">🏠 Home</a>
 
 <div class="signup-card">
     <h1>Student Signup</h1>
@@ -186,6 +211,18 @@ function saveDetails(){
         window.location.href="profile.html";
     });
 }
+</script>
+
+<script>
+const homeBtn = document.getElementById("homeBtn");
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+        homeBtn.classList.add("hide");   // hide when scrolling down
+    } else {
+        homeBtn.classList.remove("hide"); // show when at top
+    }
+});
 </script>
 
 </body>
